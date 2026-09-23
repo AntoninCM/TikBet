@@ -1,0 +1,5 @@
+anthropic>=1.8
+pydantic>=2
+numpy
+faster-whisper      # transcription mot-à-mot
+imageio-ffmpeg      # ffmpeg embarqué si non installé sur la machine
