@@ -3,3 +3,4 @@ out/
 .DS_Store
 *.mp4
 !public/**/*.mp4
+livrables/
