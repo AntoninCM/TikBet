@@ -1,8 +1,0 @@
-node_modules/
-studio/out/
-videos/
-.DS_Store
-.env
-*.wav
-*.npy
-__pycache__/
