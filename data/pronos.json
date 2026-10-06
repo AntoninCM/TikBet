@@ -1,0 +1,32 @@
+[
+  {
+    "sport": "⚽ Ligue 1",
+    "date": "Ce soir · 21h00",
+    "equipeDomicile": "PSG",
+    "equipeExterieur": "Marseille",
+    "pari": "PSG gagne & +2,5 buts",
+    "cote": 2.1,
+    "confiance": 4,
+    "arguments": [
+      "PSG invaincu à domicile depuis 14 matchs",
+      "+2,5 buts dans 8 des 10 derniers Classiques",
+      "OM sans son défenseur central titulaire"
+    ],
+    "accroche": "Le prono que personne n'ose jouer 👀"
+  },
+  {
+    "sport": "⚽ Liga",
+    "date": "Ce soir · 21h00",
+    "equipeDomicile": "Real Madrid",
+    "equipeExterieur": "Barça",
+    "pari": "Les 2 équipes marquent",
+    "cote": 1.65,
+    "confiance": 5,
+    "arguments": [
+      "Les 2 marquent dans 9 des 10 derniers Clasicos",
+      "Attaques à +2 buts/match cette saison",
+      "Défenses toutes les deux en rotation"
+    ],
+    "accroche": "Le Clasico, on a LE pari 🔥"
+  }
+]

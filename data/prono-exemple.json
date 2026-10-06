@@ -1,0 +1,15 @@
+{
+  "sport": "⚽ Ligue 1",
+  "date": "Ce soir · 21h00",
+  "equipeDomicile": "PSG",
+  "equipeExterieur": "Marseille",
+  "pari": "PSG gagne & +2,5 buts",
+  "cote": 2.10,
+  "confiance": 4,
+  "arguments": [
+    "PSG invaincu à domicile depuis 14 matchs",
+    "+2,5 buts dans 8 des 10 derniers Classiques",
+    "OM sans son défenseur central titulaire"
+  ],
+  "accroche": "Le prono que personne n'ose jouer 👀"
+}
