@@ -6,6 +6,8 @@ import { LivePromo } from "./liveup/LivePromo";
 import { VARIANTES } from "./liveup/variantes";
 import { dureeTotale } from "./liveup/durees";
 import { DIMENSIONS } from "./liveup/theme";
+import { Promo500k } from "./promo500k/Promo500k";
+import { DUREE as DUREE_500K } from "./promo500k/timeline";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -18,6 +20,7 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       defaultProps={exemple as Prono}
     />
+    <Composition id="Promo500k" component={Promo500k} durationInFrames={DUREE_500K} fps={30} width={1080} height={1920} />
     <Folder name="LiveUp">
       {VARIANTES.map((v) => (
         <Composition

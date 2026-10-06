@@ -59,3 +59,14 @@ npm run catalogue:liveup           # data/liveup-variantes.csv : tableau de suiv
 **Ajouter des variantes** : ajouter une accroche dans `ANGLES` (`src/liveup/variantes.ts`) → 2 vidéos de plus (9:16 + bumper). `*mot*` = surligné en or.
 **Modifier un texte / chiffre** : `src/liveup/contenu.ts` (tout est repris de livesuccess.app et liveupagency.fr, relevé le 06/10/2026).
 **Assets** : `public/liveup/logo.png` (logo officiel), `public/liveup/fond.mp4` (vidéo mascotte du site).
+
+---
+
+# Promo « 100K → 500K 💎 en 90 jours » 🚀
+
+Vidéo pub premium 9:16 de 48 s avec bande-son synthétisée et calée image par image (`src/promo500k/`).
+```bash
+npm run audio:500k    # régénère la bande-son à partir de la timeline (python3 + numpy)
+npm run render:500k   # -> out/Promo500k.mp4
+```
+Timings et bruitages : `src/promo500k/timeline.ts`. Kit marketing (légende, textes pubs, accroches, plan de test) : `docs/promo-500k.md`.
