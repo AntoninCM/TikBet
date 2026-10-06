@@ -1,5 +1,6 @@
-"""Bande-son de Promo500k : beat 120 BPM + bruitages calés sur src/promo500k/timeline.ts.
-Usage : npm run audio:500k   (exporte la timeline en JSON puis lance ce script)
+"""Bande-son des vidéos : beat 120 BPM + bruitages calés sur la timeline exportée en JSON.
+Usage : python3 scripts/gen-audio.py timeline.json sortie.wav  (via npm run audio:500k / audio:secrets)
+Le JSON contient fps, bpm, duree, drop (frame du drop, idéalement sur une mesure) et sfx.
 Tout est synthétisé (numpy) : aucun droit musical à gérer."""
 import json, sys, wave
 import numpy as np
@@ -12,9 +13,8 @@ N = int(DUREE_S * SR)
 BEAT = 60 / BPM
 rng = np.random.default_rng(7)
 L = np.zeros(N); R = np.zeros(N)
-sc = tl["scenes"]
 f2s = lambda f: f / FPS
-DROP = f2s(sc["reveal"][0]); CTA = f2s(sc["cta"][0]); FIN = f2s(tl["duree"])
+DROP = f2s(tl["drop"]); FIN = f2s(tl["duree"])
 
 def add(sig, t, g=1.0, pan=0.0):
     i = int(t * SR)

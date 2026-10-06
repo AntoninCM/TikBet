@@ -9,8 +9,10 @@
     "render:batch": "node scripts/render-batch.mjs",
     "render:liveup": "node scripts/render-liveup.mjs",
     "catalogue:liveup": "npx tsx scripts/catalogue-liveup.ts",
-    "audio:500k": "npx tsx scripts/export-timeline-500k.ts /tmp/timeline-500k.json && python3 scripts/gen-audio-500k.py /tmp/timeline-500k.json public/promo500k/bande-son.wav",
-    "render:500k": "remotion render Promo500k out/Promo500k.mp4"
+    "audio:500k": "npx tsx scripts/export-timeline-500k.ts /tmp/timeline-500k.json && python3 scripts/gen-audio.py /tmp/timeline-500k.json public/promo500k/bande-son.wav",
+    "render:500k": "remotion render Promo500k out/Promo500k.mp4",
+    "audio:secrets": "npx tsx scripts/export-secrets.ts /tmp/secrets-tl && mkdir -p public/secrets && for f in /tmp/secrets-tl/*.json; do python3 scripts/gen-audio.py $f public/secrets/$(basename $f .json).wav; done",
+    "render:secrets": "node scripts/render-liveup.mjs Secret-"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.533",

@@ -48,7 +48,14 @@ export const Kinetic: React.FC<{ texte: string; taille: number; delai?: number; 
   // Surlignage multi-mots : "*90 jours*" → les deux mots en or
   let etatOr = false;
   let etatRose = false;
-  const mots = texte.split(" ").map((m) => {
+  // La ponctuation française (« : ? ! ») reste collée à son mot : jamais seule en début de ligne
+  const jetons = texte.split(" ").reduce<string[]>((acc, m) => {
+    if (/^[:?!;»]+$/.test(m) && acc.length) acc[acc.length - 1] += `\u00a0${m}`;
+    else if (acc.length && acc[acc.length - 1] === "«") acc[acc.length - 1] += `\u00a0${m}`;
+    else acc.push(m);
+    return acc;
+  }, []);
+  const mots = jetons.map((m) => {
     const or = etatOr || m.includes("*");
     const rose = etatRose || m.includes("_");
     if ((m.match(/\*/g) ?? []).length % 2) etatOr = !etatOr;

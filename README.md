@@ -70,3 +70,15 @@ npm run audio:500k    # régénère la bande-son à partir de la timeline (pytho
 npm run render:500k   # -> out/Promo500k.mp4
 ```
 Timings et bruitages : `src/promo500k/timeline.ts`. Kit marketing (légende, textes pubs, accroches, plan de test) : `docs/promo-500k.md`.
+
+---
+
+# Série A — 6 vidéos « secrets » 🔓
+
+Moteur de vidéos par scènes (`src/secrets/`) : hook → mythe → SECRET (drop musical) → démonstration → hacks → CTA.
+Les scripts sont dans `src/secrets/scripts.ts` ; une nouvelle vidéo = un nouvel objet dans `SECRETS`.
+```bash
+npm run audio:secrets    # une bande-son par vidéo, calée sur ses scènes
+npm run render:secrets   # -> out/liveup/Secret-*.mp4
+```
+Kit de publication (légendes, commentaires épinglés, DM par mot-clé) : `docs/serie-a-secrets.md`.

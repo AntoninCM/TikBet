@@ -15,7 +15,8 @@ fs.mkdirSync(dossier, { recursive: true });
 
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("public") });
 const compos = (await getCompositions(serveUrl, { browserExecutable })).filter(
-  (c) => c.id.startsWith("LiveUp-") && c.id.includes(filtre),
+  // sans filtre : les 50 variantes LiveUp ; avec filtre : toute composition qui le contient (ex. "Secret-")
+  (c) => (filtre ? c.id.includes(filtre) : c.id.startsWith("LiveUp-")),
 );
 console.log(`🎬 ${compos.length} vidéos à rendre`);
 
