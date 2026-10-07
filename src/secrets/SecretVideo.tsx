@@ -3,7 +3,7 @@ import { Fond, Grain } from "../promo500k/Decor";
 import { TEMPS } from "../promo500k/timeline";
 import { K, TEXTE, clamp } from "../promo500k/ui";
 import { Cta, Duo, Equation, Etapes, Hook, Liste, Mythe, Punchline, Score, SecretCard } from "./Scenes";
-import { SECRETS } from "./scripts";
+import { PROFILS, SECRETS } from "./scripts";
 import { debuts, drop, duree, dureeTotale } from "./timing";
 import type { Scene } from "./types";
 
@@ -28,7 +28,7 @@ const Entree: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 export const SecretVideo: React.FC<{ id: string }> = ({ id }) => {
-  const v = SECRETS.find((x) => x.id === id)!;
+  const v = [...SECRETS, ...PROFILS].find((x) => x.id === id)!;
   const f = useCurrentFrame();
   const d0 = debuts(v);
   const dr = drop(v);
@@ -40,6 +40,7 @@ export const SecretVideo: React.FC<{ id: string }> = ({ id }) => {
   const shake = [0, dr, ctaDebut].reduce((a, t) => a + (f >= t && f < t + 12 ? (12 - (f - t)) * 1.6 : 0), 0);
   const flash = Math.max(0, ...d0.slice(1).map((t) => interpolate(f, [t - 1, t, t + 5], [0, 0.5, 0], clamp)));
   const numero = v.scenes.flatMap((s) => (s.type === "secret" ? [s.numero] : []))[0];
+  const badge = v.badge ?? `SECRET ${numero}/6`;
   const chaleur = interpolate(f, [dr - 20, dr + 10], [0, 1], clamp);
   return (
     <AbsoluteFill style={{ background: K.noir }}>
@@ -57,7 +58,7 @@ export const SecretVideo: React.FC<{ id: string }> = ({ id }) => {
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         <div style={{ position: "absolute", top: 0, left: 0, height: 10, width: `${(f / total) * 100}%`, background: K.degrade, boxShadow: `0 0 20px ${K.rose}` }} />
         <Img src={staticFile("liveup/logo.png")} style={{ position: "absolute", top: 120, left: 70, width: 170 }} />
-        <div style={{ position: "absolute", top: 136, right: 150, fontFamily: TEXTE, fontWeight: 800, fontSize: 26, color: K.or, letterSpacing: 3, border: `2px solid ${K.or}66`, borderRadius: 999, padding: "6px 18px" }}>SECRET {numero}/6</div>
+        <div style={{ position: "absolute", top: 136, right: 150, fontFamily: TEXTE, fontWeight: 800, fontSize: 26, color: K.or, letterSpacing: 3, border: `2px solid ${K.or}66`, borderRadius: 999, padding: "6px 18px" }}>{badge}</div>
       </AbsoluteFill>
     </AbsoluteFill>
   );

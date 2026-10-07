@@ -3,9 +3,9 @@ export type Visuel =
   | { type: "emoji"; e: string; barre?: boolean };
 
 export type Scene =
-  | { type: "hook"; texte: string; visuel: Visuel }
+  | { type: "hook"; texte: string; visuel: Visuel; tag?: string }
   | { type: "mythe"; croyance: string; verite: string }
-  | { type: "secret"; numero: number; titre: string }
+  | { type: "secret"; numero?: number; label?: string; titre: string }
   | { type: "equation" }
   | { type: "etapes"; titre: string; items: { e: string; texte: string }[] }
   | { type: "score"; heures: { h: string; s: number }[] }
@@ -14,4 +14,5 @@ export type Scene =
   | { type: "punchline"; tag: string; texte: string }
   | { type: "cta"; motcle?: string; sous: string };
 
-export type Secret = { id: string; titre: string; scenes: Scene[] };
+// badge : texte en haut à droite (par défaut "SECRET n/6")
+export type Secret = { id: string; titre: string; badge?: string; scenes: Scene[] };

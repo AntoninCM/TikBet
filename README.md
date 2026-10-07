@@ -82,3 +82,6 @@ npm run audio:secrets    # une bande-son par vidéo, calée sur ses scènes
 npm run render:secrets   # -> out/liveup/Secret-*.mp4
 ```
 Kit de publication (légendes, commentaires épinglés, DM par mot-clé) : `docs/serie-a-secrets.md`.
+
+**Série B — 5 secrets par profil** (matcheurs, gamers, GTA RP, artistes, lives discussion) : même moteur, scripts dans `PROFILS`.
+Rendu : `node scripts/render-liveup.mjs Secret-B`. Kit : `docs/serie-b-profils.md`.

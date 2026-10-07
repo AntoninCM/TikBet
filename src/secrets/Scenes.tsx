@@ -27,14 +27,14 @@ const Tampon: React.FC<{ texte: string; delai: number; couleur: string; rot?: nu
 };
 
 // ───────── HOOK ─────────
-export const Hook: React.FC<P<"hook">> = ({ texte, visuel }) => {
+export const Hook: React.FC<P<"hook">> = ({ texte, visuel, tag = "CE QUE PERSONNE NE TE DIT" }) => {
   const f = useCurrentFrame();
   const s = useSpring(10, 10);
   const flotte = Math.sin(f / 10) * 10;
   return (
     <Zone justify="flex-start" gap={50}>
       <div style={{ alignSelf: "stretch", display: "flex", flexDirection: "column", gap: 24, marginTop: 30 }}>
-        <Tag couleur={K.rose}>CE QUE PERSONNE NE TE DIT</Tag>
+        <Tag couleur={K.rose}>{tag}</Tag>
         <Kinetic texte={texte} taille={94} align="left" ecart={3} />
       </div>
       {visuel.type === "phone" ? (
@@ -77,7 +77,7 @@ export const Mythe: React.FC<P<"mythe">> = ({ croyance, verite }) => {
 };
 
 // ───────── SECRET (le drop) ─────────
-export const SecretCard: React.FC<P<"secret">> = ({ numero, titre }) => {
+export const SecretCard: React.FC<P<"secret">> = ({ numero, label, titre }) => {
   const f = useCurrentFrame();
   const s = useSpring(0, 9, 0.6);
   const ouvert = f >= 10;
@@ -86,7 +86,7 @@ export const SecretCard: React.FC<P<"secret">> = ({ numero, titre }) => {
     <Zone gap={34}>
       <div style={{ position: "absolute", inset: 0, background: `conic-gradient(from ${rayons}deg at 50% 42%, ${K.or}00, ${K.or}22, ${K.or}00 12%, ${K.or}22 25%, ${K.or}00 37%, ${K.or}22 50%, ${K.or}00 62%, ${K.or}22 75%, ${K.or}00 87%, ${K.or}22)`, opacity: interpolate(f, [0, 15], [0, 1], clamp), maskImage: "radial-gradient(circle at 50% 42%, black 0%, transparent 60%)", WebkitMaskImage: "radial-gradient(circle at 50% 42%, black 0%, transparent 60%)" }} />
       <div style={{ fontSize: 200, transform: `scale(${interpolate(s, [0, 1], [2.2, 1])}) rotate(${ouvert ? 0 : -8}deg)`, filter: `drop-shadow(0 0 50px ${K.or})` }}>{ouvert ? "🔓" : "🔒"}</div>
-      <div style={{ fontFamily: TITRE, fontWeight: 900, fontSize: 150, letterSpacing: -4, lineHeight: 1, ...orMetal, transform: `scale(${interpolate(s, [0, 1], [0.4, 1])})` }}>SECRET #{numero}</div>
+      <div style={{ fontFamily: TITRE, fontWeight: 900, fontSize: label ? 112 : 150, letterSpacing: -4, lineHeight: 1, textAlign: "center", ...orMetal, transform: `scale(${interpolate(s, [0, 1], [0.4, 1])})` }}>{label ?? `SECRET #${numero}`}</div>
       <Kinetic texte={titre} taille={70} delai={12} ecart={2} />
     </Zone>
   );
@@ -262,7 +262,7 @@ export const Cta: React.FC<P<"cta"> & { logo: string }> = ({ motcle, sous, logo 
     <Zone gap={34}>
       <Img src={logo} style={{ width: 400, transform: `scale(${sLogo})`, filter: `drop-shadow(0 0 40px ${K.or}aa)` }} />
       <Kinetic texte={motcle ? "Commente" : "Enregistre"} taille={90} delai={6} />
-      <div style={{ fontFamily: TITRE, fontWeight: 900, fontSize: motcle ? 104 : 120, color: K.blanc, background: K.degrade, borderRadius: 36, padding: "22px 64px", transform: `scale(${sBtn * pulse}) rotate(-2deg)`, boxShadow: `0 0 80px ${K.rose}aa` }}>
+      <div style={{ fontFamily: TITRE, fontWeight: 900, fontSize: motcle ? (motcle.length > 6 ? 84 : 104) : 120, whiteSpace: "nowrap", color: K.blanc, background: K.degrade, borderRadius: 36, padding: "22px 56px", transform: `scale(${sBtn * pulse}) rotate(-2deg)`, boxShadow: `0 0 80px ${K.rose}aa` }}>
         {motcle ? `« ${motcle} »` : "📌"}
       </div>
       <div style={{ fontFamily: TEXTE, fontWeight: 700, fontSize: 40, color: K.blanc, textAlign: "center", opacity: interpolate(f, [T.cta.bouton + 10, T.cta.bouton + 20], [0, 1], clamp) }}>{sous}</div>

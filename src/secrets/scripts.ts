@@ -77,3 +77,72 @@ export const SECRETS: Secret[] = [
     ],
   },
 ];
+
+// Série B — un secret par profil de créateur (angles du doc "Copywriting & argumentaire de vente")
+export const PROFILS: Secret[] = [
+  {
+    id: "B1-matcheurs",
+    titre: "Matcheurs",
+    badge: "SÉRIE PROFILS",
+    scenes: [
+      { type: "hook", tag: "SPÉCIAL MATCHEURS", texte: "Tu perds tes matchs à cause d'*une seule* décision. Et ce n'est pas pendant le match.", visuel: { type: "emoji", e: "🥊" } },
+      { type: "mythe", croyance: "Je perds parce que ma commu donne moins", verite: "Tu perds quand tu *choisis* ton adversaire." },
+      { type: "secret", label: "LE SECRET", titre: "Le bon adversaire vaut plus que le bon soir" },
+      { type: "duo", titre: "Le bon adversaire :", items: [{ e: "🎯", titre: "Même niveau que toi", sous: "Un match serré fait donner les deux camps." }, { e: "🤝", titre: "Une commu compatible", sous: "Ses viewers peuvent devenir les tiens." }] },
+      { type: "liste", titre: "Les hacks des *matcheurs* :", style: "num", items: ["Un calendrier de matchs à heures fixes", "Alterne matchs à enjeu et matchs plaisir", "Remercie le camp adverse après le match", "Après une défaite : annonce la revanche"] },
+      { type: "cta", motcle: "MATCH", sous: "et je te présente LiveMatch" },
+    ],
+  },
+  {
+    id: "B2-gamers",
+    titre: "Gamers",
+    badge: "SÉRIE PROFILS",
+    scenes: [
+      { type: "hook", tag: "SPÉCIAL GAMERS", texte: "Tu as *500 viewers* sur Minecraft et 0 diamant ? Voilà pourquoi.", visuel: { type: "emoji", e: "🎮" } },
+      { type: "mythe", croyance: "Mes viewers sont radins", verite: "Une partie d'entre eux *ne peut pas* t'envoyer de cadeaux." },
+      { type: "secret", label: "LE SECRET", titre: "Il faut avoir 18 ans pour envoyer des cadeaux" },
+      { type: "duo", titre: "Ce que ça change :", items: [{ e: "🧒", titre: "Un public très jeune", sous: "Beaucoup de viewers, peu de diamants." }, { e: "🌙", titre: "Attire aussi les adultes", sous: "Horaires plus tardifs, formats défis, ton adapté." }] },
+      { type: "liste", titre: "Les hacks *gamers* :", style: "num", items: ["Facecam et voix en permanence", "Coupe la musique du jeu", "Le chat décide et déclenche des événements", "Défis chronométrés + objectif visible"] },
+      { type: "cta", motcle: "GAME", sous: "et je te montre LiveShow" },
+    ],
+  },
+  {
+    id: "B3-gta-rp",
+    titre: "GTA RP",
+    badge: "SÉRIE PROFILS",
+    scenes: [
+      { type: "hook", tag: "SPÉCIAL GTA RP", texte: "La radio de *GTA* peut couper ton live. Personne ne te le dit.", visuel: { type: "emoji", e: "📻" } },
+      { type: "mythe", croyance: "On m'a coupé à cause d'un hater", verite: "Souvent, c'est la *musique protégée* en fond." },
+      { type: "secret", label: "LE SECRET", titre: "La musique du jeu compte comme de la musique" },
+      { type: "liste", titre: "Ce qui *coupe* un live GTA :", style: "x", items: ["La radio de la voiture allumée", "Une musique en fond sur Discord", "Un écran de jeu sans toi ni ta voix", "Un mineur visible ou audible"] },
+      { type: "liste", titre: "Fais de ton RP une *série* :", style: "num", items: ["Un personnage avec une histoire", "Des rendez-vous à heure fixe", "Le chat choisit la suite"] },
+      { type: "cta", motcle: "RP", sous: "et on vérifie ton setup GTA" },
+    ],
+  },
+  {
+    id: "B4-artistes",
+    titre: "Artistes",
+    badge: "SÉRIE PROFILS",
+    scenes: [
+      { type: "hook", tag: "SPÉCIAL ARTISTES", texte: "Tu chantes juste et *personne* ne reste ? Le problème n'est pas ta voix.", visuel: { type: "emoji", e: "🎤" } },
+      { type: "mythe", croyance: "Il me faut une performance parfaite", verite: "Ton public veut *participer* à la création." },
+      { type: "secret", label: "LE SECRET", titre: "Le chat choisit, toi tu crées" },
+      { type: "etapes", titre: "Le vote en *3 temps* :", items: [{ e: "💬", texte: "« 1 = ballade, 2 = son qui bouge »" }, { e: "🔥", texte: "Annonce le gagnant en direct" }, { e: "🎶", texte: "Joue-le pour eux" }] },
+      { type: "liste", titre: "Les hacks *artistes* :", style: "num", items: ["Priorise tes créations originales", "Montre le processus : l'erreur, la correction", "Dédicaces et mercis par le prénom", "Jamais de dédicace vendue contre des cadeaux"] },
+      { type: "cta", motcle: "SCÈNE", sous: "et on construit ton format de live" },
+    ],
+  },
+  {
+    id: "B5-discussion",
+    titre: "Lives discussion",
+    badge: "SÉRIE PROFILS",
+    scenes: [
+      { type: "hook", tag: "SPÉCIAL LIVES DISCUSSION", texte: "Tu parles dans le *vide* en live ? Ce n'est pas ton contenu, c'est ta structure.", visuel: { type: "emoji", e: "🎙️" } },
+      { type: "mythe", croyance: "Il me faut de meilleurs sujets", verite: "Un live qui marche est une *émission*, pas une discussion." },
+      { type: "secret", label: "LE SECRET", titre: "4 rubriques par heure" },
+      { type: "liste", titre: "Ton *heure type* :", style: "num", items: ["00 : la question du jour", "15 : le débat « team A ou team B »", "30 : l'invité surprise en live", "45 : l'objectif de live"] },
+      { type: "liste", titre: "Pour qu'ils *reviennent* :", style: "check", items: ["Annonce le thème du prochain live", "Un invité chaque soir", "Toujours aux mêmes heures"] },
+      { type: "cta", motcle: "ÉMISSION", sous: "et on construit ton heure type" },
+    ],
+  },
+];
