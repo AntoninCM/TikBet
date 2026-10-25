@@ -27,7 +27,17 @@ def transcribe(video: str, cache_path: str, model_size: str = "small", language:
         raise SystemExit("faster-whisper manquant : `pip install faster-whisper` (ou fournissez --transcript).") from exc
 
     print(f"[transcription] modèle whisper '{model_size}' — ~1-3x temps réel sur CPU, bien plus rapide sur GPU")
-    model = WhisperModel(model_size, device="auto", compute_type="auto")
+    try:
+        out = _run(WhisperModel(model_size, device="auto", compute_type="auto"), video, language)
+    except RuntimeError as exc:  # ex. GPU détecté mais librairies CUDA absentes (fréquent sous Windows)
+        print(f"[transcription] GPU indisponible ({exc}) → bascule sur CPU")
+        out = _run(WhisperModel(model_size, device="cpu", compute_type="int8"), video, language)
+    with open(cache_path, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=1)
+    return out
+
+
+def _run(model, video: str, language: str | None) -> dict:
     segments, info = model.transcribe(video, word_timestamps=True, vad_filter=True, language=language)
     out = {"language": info.language, "segments": []}
     for seg in segments:
@@ -43,8 +53,6 @@ def transcribe(video: str, cache_path: str, model_size: str = "small", language:
             }
         )
         print(f"  {seg.start:7.1f}s  {seg.text.strip()[:80]}", flush=True)
-    with open(cache_path, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
     return out
 
 

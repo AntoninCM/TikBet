@@ -32,6 +32,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--crop-x", type=float, default=0.5)
     p.add_argument("--no-jumpcuts", action="store_true")
     p.add_argument("--no-zooms", action="store_true")
+    p.add_argument("--no-flash", action="store_true", help="pas de flash blanc entre teaser et clip")
     p.add_argument("--no-sfx", action="store_true")
     p.add_argument("--sfx-dir", help="dossier avec vos propres whoosh.wav / impact.wav / pop.wav")
     p.add_argument("--music", help="musique de fond (sera baissée automatiquement quand ça parle)")
@@ -67,7 +68,7 @@ def main(argv: list[str] | None = None) -> None:
     opts = RenderOpts(
         layout=a.layout,
         facecam=tuple(int(v) for v in a.facecam.split(",")) if a.facecam else None,
-        crop_x=a.crop_x, teaser=a.teaser != "none", jumpcuts=not a.no_jumpcuts, zooms=not a.no_zooms,
+        crop_x=a.crop_x, teaser=a.teaser != "none", jumpcuts=not a.no_jumpcuts, zooms=not a.no_zooms, flash=not a.no_flash,
         sfx=None if a.no_sfx else sfx.ensure(a.sfx_dir or os.path.join(a.out, "_sfx")),
         music=a.music, music_db=a.music_db, font=a.font, preset=a.preset,
     )

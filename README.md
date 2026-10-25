@@ -4,6 +4,16 @@ Transforme un live (10 min comme 10 h) en clips verticaux prêts à poster : sé
 
 Fonctionnement détaillé (façon Eklipse, grille de viralité, effets) : [docs/CLIPPING.md](docs/CLIPPING.md)
 
+## Windows : en une commande
+
+```powershell
+git clone -b claude/eklipse-clipping-system-wb1w94 https://github.com/AntoninCM/TikBet.git
+cd TikBet
+powershell -ExecutionPolicy Bypass -File run_windows.ps1 -Source "C:\chemin\vers\video_ou_dossier"
+```
+
+Le script installe ffmpeg (winget) et les dépendances Python, demande la clé API (Entrée = mode sans IA), puis traite chaque vidéo du dossier. Réglages par défaut : recadrage plein écran 9:16, silences coupés, pas de flash blanc. Les clips sortent dans `out\<nom de la vidéo>\`.
+
 ## Installation
 
 ```bash

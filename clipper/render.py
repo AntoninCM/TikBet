@@ -29,6 +29,7 @@ class RenderOpts:
     jumpcuts: bool = True
     max_pause: float = 0.45  # silences plus longs = coupés
     zooms: bool = True
+    flash: bool = True  # flash blanc entre teaser et clip
     sfx: dict | None = None  # {"whoosh": path, "impact": path, "pop": path}
     music: str | None = None
     music_db: float = -20.0
@@ -164,10 +165,10 @@ def render(video: str, info: MediaInfo, clip: ClipIdea, words: list[dict], ex: n
     fc.append(f"[{i_main}:a]aselect='{_between(rel)}',asetpts=N/SR/TB,aresample=48000,"
               f"aformat=channel_layouts=stereo[ma]")
     if o.teaser:
-        fc.append(f"[mv1]fade=t=in:st=0:d=0.25:color=white[mv]")
+        fc.append("[mv1]fade=t=in:st=0:d=0.25:color=white[mv]" if o.flash else "[mv1]null[mv]")
         fc.append(f"[{i_teaser}:v]fps={o.fps},setpts=PTS-STARTPTS[tv0]")
         fc.append(_layout("tv0", "tv1", "t", info, o))
-        fc.append(f"[tv1]fade=t=out:st={max(0, tdur - 0.12):.3f}:d=0.12:color=white[tv]")
+        fc.append(f"[tv1]fade=t=out:st={max(0, tdur - 0.12):.3f}:d=0.12:color=white[tv]" if o.flash else "[tv1]null[tv]")
         fc.append(f"[{i_teaser}:a]asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,"
                   f"afade=t=out:st={max(0, tdur - 0.2):.3f}:d=0.2[ta]")
         fc.append("[tv][ta][mv][ma]concat=n=2:v=1:a=1[vc][ac]")
